@@ -1,21 +1,16 @@
 const express=require("express")
 const app=express()
 
-app.get("/user",(req,res)=>{
-    res.send({firstname:"Sivasankar",lastname:"Gomasani"})   
+app.use("/user",(req,res,next)=>{
+    console.log("Handling first route!!")
+   
+    next()
+    //  res.send("first Response")
+},(req,res)=>{
+    console.log("Handling second route")
+    // res.send("second route")
+    next()
 })
-
-app.post("/user",(req,res)=>{
-    res.send("sav data into the database")
-})
-app.delete("/user",(req,res)=>{
-    res.send("user data deleted successfully")
-})
-// This will match all HTTP methods API call to /test
-app.use("/test",(req,res)=>{
-    res.send("Hello from the server")
-})
-
 
 app.listen(3000,()=>{
     console.log("server is successfully listening on the port 3000")
