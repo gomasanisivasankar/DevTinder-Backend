@@ -1,29 +1,32 @@
+require("dotenv").config();
 const express = require("express");
+
+const User = require("./models/user");
+const connectDB = require("./config/database");
 const app = express();
 
-app.use("/", (req, res) => {
-  res.send("Handling the / routes");
+app.post("/signup", async (req, res) => {
+  const user = new User({
+    firstName: "sivasankar",
+    lastName: "Gomasani",
+    emailId: "ssankar@gmail.com",
+    password: "siva@123",
+  });
+  try {
+    await user.save();
+    res.send("data added successfully");
+  } catch (err) {
+    res.status(500).send("Error saving the user" + err.message);
+  }
 });
 
-app.use("/", (req, res) => {
-    res.json({message: "Response from /users"})
-})
-
-app.get("/user", (req, res) => {
-  console.log("Handling first route!!");
-  res.send("first Response");
-});
-
-app.post("/user/:id", (req, res) => {
-  console.log("Handling first route!!");
-  res.send("first Response");
-});
-
-app.get("/product", (req, res) => {
-  console.log("Handling first route!!");
-  res.send("first Response");
-});
-
-app.listen(3000, () => {
-  console.log("server is successfully listening on the port 3000");
-});
+connectDB()
+  .then(() => {
+    console.log("Database is successfully established");
+    app.listen(3000, () => {
+      console.log("server is successfully listening on the port 3000");
+    });
+  })
+  .catch((err) => {
+    console.log("Database is not connected");
+  });
