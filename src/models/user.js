@@ -1,5 +1,5 @@
 const mongoose=require('mongoose')
-
+const validator=require('validator')
 const userSchema=new mongoose.Schema({
     firstName:{
         type:String,
@@ -15,12 +15,22 @@ const userSchema=new mongoose.Schema({
         required:true,
         lowercase:true,
         unique: true,
-        trim:true
+        trim:true,
+        validate(value){
+            if(!validator.isEmail(value)){
+                throw new Error("Email is not valid"+value)
+            }
+        }
     },
     password:{
         type:String,
         required:true,
+        validate(value){
+            if(!validator.isStrongPassword(value)){
+                throw new Error("enter a strong password"+value)
+            }
         
+        }
     },
     age:{
         type:Number,
@@ -37,7 +47,13 @@ const userSchema=new mongoose.Schema({
     },
     photoURL:{
         type:String,
-        default:"",
+        default:"https://www.freepik.com/free-vector/user-circles-set_145856997.htm#fromView=keyword&page=1&position=0&uuid=9d2ecb5e-eeac-4b51-9ba7-d50beae54fd2&query=Default+user",
+        validate(value){
+            if(!validator.isURL(value)){
+                throw new Error("Photo URL is not valid")
+            }
+        },
+        
     },
     about:{
         type:String,
