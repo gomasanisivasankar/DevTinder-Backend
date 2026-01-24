@@ -1,7 +1,7 @@
 require("dotenv").config();
 const express = require("express");
 
-
+const User = require("./models/user");
 
 const connectDB = require("./config/database");
 const cookieParser = require("cookie-parser");
