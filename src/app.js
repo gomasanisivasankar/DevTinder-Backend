@@ -1,6 +1,6 @@
 require("dotenv").config();
 const express = require("express");
-
+const cors= require("cors");
 const User = require("./models/user");
 
 const connectDB = require("./config/database");
@@ -11,6 +11,10 @@ const profileRouter = require("./routes/profile");
 const requestRouter = require("./routes/request");
 const userRouter = require("./routes/user");
 const app = express();
+app.use(cors({
+    origin: 'http://localhost:5173',
+    credentials: true,
+}));
 app.use(express.json());
 app.use(cookieParser());
 
@@ -31,3 +35,4 @@ connectDB()
     console.log("Database is not connected");
     console.error(err);
   });
+  
