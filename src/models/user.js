@@ -53,7 +53,7 @@ const userSchema=new mongoose.Schema({
     },
     photoURL:{
         type:String,
-        default:"https://www.freepik.com/free-vector/user-circles-set_145856997.htm#fromView=keyword&page=1&position=0&uuid=9d2ecb5e-eeac-4b51-9ba7-d50beae54fd2&query=Default+user",
+        default:"https://cdn-icons-png.flaticon.com/512/149/149071.png",
         validate(value){
             if(!validator.isURL(value)){
                 throw new Error("Photo URL is not valid")
