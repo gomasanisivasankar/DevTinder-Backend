@@ -27,7 +27,7 @@ connectDB()
   .then(async () => {
     await User.syncIndexes();
     console.log("Database is successfully established");
-    app.listen(3000, () => {
+    app.listen(process.env.PORT, () => {
       console.log("server is successfully listening on the port 3000");
     });
   })
