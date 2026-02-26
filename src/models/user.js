@@ -51,6 +51,13 @@ const userSchema=new mongoose.Schema({
         //     }
         // }
     },
+    isPremium:{
+        type:Boolean,
+        default:false
+    },
+    membershipType:{
+        type:String,
+    },
     photoURL:{
         type:String,
         default:"https://cdn-icons-png.flaticon.com/512/149/149071.png",
@@ -67,6 +74,9 @@ const userSchema=new mongoose.Schema({
     },
     skills:{
         type:[String]
+    },
+    phoneNumber:{
+        type:String
     }
 
 },
