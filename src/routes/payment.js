@@ -68,4 +68,17 @@ catch (err) {
     }
   });
 
+paymentRouter.get("/premium/verify",userAuth,async(req,res)=>{
+  try{
+    const user=req.user.toJSON();
+    if(user.isPremium){
+      res.json({...user});
+    }else{
+      res.json({...user});
+    }
+
+  }catch(err){
+    res.status(400).json({msg: err.message});
+  }
+});
 module.exports = paymentRouter;
