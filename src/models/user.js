@@ -24,9 +24,12 @@ const userSchema=new mongoose.Schema({
             }
         }
     },
+    googleId:{
+        type:String
+    },
     password:{
         type:String,
-        required:true,
+        default:null,
         validate(value){
             if(!validator.isStrongPassword(value)){
                 throw new Error("enter a strong password"+value)

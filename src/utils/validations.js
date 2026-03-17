@@ -22,3 +22,4 @@ const ValidateEditProfileData=(req)=>{
 }
 
 module.exports={validateSignUpData,ValidateEditProfileData}
+

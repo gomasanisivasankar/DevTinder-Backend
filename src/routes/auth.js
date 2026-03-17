@@ -3,6 +3,7 @@ const authRouter=express.Router();
 const bcrypt = require("bcrypt");
 const { validateSignUpData } = require("../utils/validations");
 const User = require("../models/user");
+const passport = require("passport");
 
 authRouter.post("/signup", async (req, res) => {
   try {
@@ -51,5 +52,6 @@ authRouter.post("/logout",(req, res) => {
     res.cookie("token",null,{expires: new Date(Date.now())});
     res.send("Logout Successful!!");
 })
+
 
 module.exports=authRouter;
